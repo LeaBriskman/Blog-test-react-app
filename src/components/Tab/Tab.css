@@ -1,0 +1,14 @@
+.Tab {
+    color: #AFAFAF;
+    padding: 8px 0px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    margin: 0px 40px 0 0;
+    cursor: pointer;
+}
+
+.active {
+    color: #404040;
+    border-bottom: 3px solid #4E42E4;
+}

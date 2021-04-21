@@ -1,0 +1,21 @@
+.AddAlbum {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    color: #AFAFAF;
+}
+
+.AddAlbum span {
+    font-size: 40px;
+    color: #AFAFAF;
+    text-align: center;
+    font-weight: 400;
+}
+
+.AddAlbumWrapper {  
+    border: 2px dashed #DBDBDB;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 40px 180px;   
+}

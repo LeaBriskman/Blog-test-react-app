@@ -1,0 +1,45 @@
+.UserPage {
+    padding: 40px 50px;
+    min-width: 1240px;
+    display: flex;
+}
+
+.UserAvatarWrapper {
+    min-width: 180px;
+    height: 180px;
+    border-radius: 100px;
+    background-color: gray;
+    margin-right: 40px;
+}
+
+.InputsWrapper {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+}
+
+/*Grid settings for InputWrappers */
+
+.num1 {
+    grid-row-start: 3;
+}
+
+.num2 {
+    grid-row-start: 4;
+}
+
+.num3 {
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.num3 textarea {
+    height: calc(100% - 35px);
+}
+
+.num6 {
+    grid-column-start: 2;
+    grid-column-end: 4;
+}

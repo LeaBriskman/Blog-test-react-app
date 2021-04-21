@@ -1,0 +1,14 @@
+.FeedPage {
+    padding: 40px 50px;
+    min-width: 1240px;
+}
+
+.TabsWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.AlbumsAndPostsWrapper {
+    display: flex;
+    margin-top: 33px;
+}

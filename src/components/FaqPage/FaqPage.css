@@ -1,0 +1,15 @@
+.FaqPage {
+    padding: 40px 50px;
+    min-width: 1240px;
+}
+
+.TabsWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.AnswersWrapper {
+    display: flex;
+    padding: 20px;
+}
+

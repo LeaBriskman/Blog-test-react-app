@@ -1,0 +1,12 @@
+.Question {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 8px;
+}
+
+.Answer {
+    font-size: 14px;
+    line-height: 24px;
+    text-align: justify;
+}
