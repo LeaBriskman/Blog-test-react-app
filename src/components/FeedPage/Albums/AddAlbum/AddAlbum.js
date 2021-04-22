@@ -1,12 +1,10 @@
 import React from 'react';
 import './AddAlbum.css';
 
-const AddAlbum = () => {
+const AddAlbum = ({ onClick }) => {
     return (
-        <div className="AddAlbumWrapper">
-            <div className="AddAlbum">
-                <span>+</span> Add album
-            </div>
+        <div className="AddAlbumWrapper" onClick={onClick}>
+            <span>+</span> <div className="AddAlbum">Add album</div>
         </div>
     );
 };

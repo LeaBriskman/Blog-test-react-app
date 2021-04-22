@@ -59,7 +59,7 @@ const tabs = {
     authorizationIssues: 'Authorization Issues',
     theFirstSteps: 'The first steps',
     payment: 'Payment'
-}
+};
 
 class FaqPage extends Component {
     state = {
@@ -73,7 +73,7 @@ class FaqPage extends Component {
     renderTabs() {
         return Object.keys(tabs).map((tabId, index) => {
             return(
-                <Tab title={tabs[tabId]} key={index} onClick={() => this.toggleTab(tabId)} active={this.state.activeTabId === tabId ? true : false}/>
+                <Tab title={tabs[tabId]} key={index} onClick={() => this.toggleTab(tabId)} active={this.state.activeTabId === tabId ? true : false} />
             );
         });
     };

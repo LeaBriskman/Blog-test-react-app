@@ -1,0 +1,37 @@
+.closed {
+    display: none;   
+}
+
+.opened {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.ModalContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 80px;
+    background: #FFFFFF;
+    border-radius: 4px; 
+    min-width: 520px; 
+}
+
+.CloseModalBtn {
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    color: #FFFFFF;
+    font-size: 15px;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import './AlbumWrapper.css';
 
-const AlbumWrapper = ({children}) => {
+const AlbumWrapper = ({ children }) => {
     return(
         <div className="AlbumWrapper">{children}</div>
     );

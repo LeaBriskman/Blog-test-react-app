@@ -1,0 +1,31 @@
+.DeleteModalTitle {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 28px;
+    color: #404040;
+    margin-top: 48px;
+}
+
+.DeleteModalMessage {
+    font-size: 14px;
+    line-height: 24px;
+    color: #404040;
+    margin: 20px auto;
+}
+
+.DeleteAlbumBtn {
+    width: 100%;
+    background: #F54747;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    padding: 16px 0;
+    border: none;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    margin-top: 20px;
+    cursor: pointer;
+}
