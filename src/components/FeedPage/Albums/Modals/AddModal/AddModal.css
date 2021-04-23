@@ -1,11 +1,49 @@
 .AddModalTitle {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 28px;    
+    color: #404040;
+    margin-bottom: 8px;
+}
 
+.ModalInputWrapper {
+    width: 100%;
 }
 
 .AddModalLabel {
-
+    font-size: 12px;
+    line-height: 16px;  
+    color: #AFAFAF;
+    display: inline-block;
+    margin-bottom: 8px;
+    margin-top: 32px;
 }
 
 .AddModalInput {
-    
+    width: 100%;
+    font-size: 14px;
+    line-height: 24px;
+    padding: 8px 12px;
+    border: 1px solid #DBDBDB;
+    border-radius: 4px;
+    outline: none;
+}
+
+.AddModalBtn {
+    cursor: pointer;
+    width: 100%;
+    background: #4E42E4;
+    border-radius: 4px;
+    padding: 16px 32px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #FFFFFF;
+    border: none;
+    margin-top: 40px;
+}
+
+.AddModalBtn:disabled {
+    cursor: not-allowed;
+    background: #7b73e4;
 }

@@ -1,0 +1,27 @@
+.PhotoModalPhoto {
+
+}
+
+.PhotoModalTitle {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #FFFFFF;
+    position: absolute;
+    bottom: 28px;
+}
+
+.PhotoModalSlider {
+    color: #FFFFFF;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+}
+
+.fa-chevron-left {
+    left: 25px;
+}
+
+.fa-chevron-right {
+    right: 25px;
+}

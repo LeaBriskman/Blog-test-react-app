@@ -1,10 +1,10 @@
 import React from 'react';
 import './AlbumItem.css';
 
-const AlbumItem = ({title, author, image, onClick}) => {
+const AlbumItem = ({ title, author, image, onClickDelete, onClickOpenModal }) => {
     return (
         <>
-            <div className="AlbumPhoto">{image}</div>
+            <div className="AlbumPhoto" onClick={() => onClickOpenModal()}>{image}</div>
             <div>
                 <div className="AlbumAuthor">{author}</div>
                 <div className="AlbumTitle">{title}</div>
@@ -12,7 +12,7 @@ const AlbumItem = ({title, author, image, onClick}) => {
             <div className="MenuWrapper">
                 <div className="AlbumMenu">...</div>
                 <div className="Dropdown">
-                    <div className="DeleteBtn" onClick={onClick}>Delete</div>
+                    <div className="DeleteBtn" onClick={() => onClickDelete()}>Delete</div>
                 </div>
             </div>
         </>

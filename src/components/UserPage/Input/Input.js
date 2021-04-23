@@ -1,7 +1,7 @@
 import React from 'react';
 import './Input.css';
 
-const Input = ({label, value, i}) => {
+const Input = ({ label, value, i }) => {
     return (
         <div className={`InputWrapper num${i}`}>
             <label className="Label" htmlFor={`Input${i}`}>{label}</label>

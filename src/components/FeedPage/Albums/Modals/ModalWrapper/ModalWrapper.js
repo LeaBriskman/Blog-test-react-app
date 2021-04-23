@@ -6,8 +6,9 @@ const ModalWrapper = ({ children, isOpened, closeModal }) => {
 
     return (
         <div className={classNames}>
+            <div className="CloseModalLayer" onClick={() => closeModal()}></div>
             <div className="ModalContent">
-                <div className="CloseModalBtn" onClick={() => closeModal()}>x</div>
+                <i className="fas fa-times CloseModalBtn" onClick={() => closeModal()}></i>
                 {children}
             </div>
         </div>

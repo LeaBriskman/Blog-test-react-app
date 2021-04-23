@@ -19,15 +19,17 @@ const AppHeader = () => {
       })
     }).then((resp) => resp.json())
       .then(resp => {
-        setUserName(resp.data.user.name.match(/\b\w/g).join(''))
+        // setUserName(resp.data.user.name.match(/\b\w/g).join(''))
+        console.log(resp)
       })
-      return userName;
+      // return userName;
   }, []);
 
   return(
     <div className="Header">
       <div className="AvatarWrapper">
         <div className="Avatar">{userName}</div>
+        {/* Dropdown opened by hover */}
         <div className="Dropdown">       
           <Link to="/"><div className="Link">Feed page</div></Link>                
           <Link to="/faq"><div className="Link">FAQ page</div></Link>

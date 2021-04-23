@@ -1,7 +1,7 @@
 import React from 'react';
 import './AnswerItem.css';
 
-const AnswerItem = ({title, answer}) => {
+const AnswerItem = ({ title, answer }) => {
     return (
         <div>
             <div className="Question">{title}</div>

@@ -25,6 +25,7 @@
     background: #FFFFFF;
     border-radius: 4px; 
     min-width: 520px; 
+    z-index: 99;
 }
 
 .CloseModalBtn {
@@ -33,5 +34,13 @@
     right: 25px;
     top: 25px;
     color: #FFFFFF;
-    font-size: 15px;
+    font-size: 14px;
+}
+
+.CloseModalLayer {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
 }

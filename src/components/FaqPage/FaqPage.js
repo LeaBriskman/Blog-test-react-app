@@ -55,6 +55,7 @@ const questions = {
     ]
 };
 
+//object connecting question object (keys) with tabs names(values)
 const tabs = {
     authorizationIssues: 'Authorization Issues',
     theFirstSteps: 'The first steps',
@@ -93,7 +94,7 @@ class FaqPage extends Component {
     render() {
         return(
             <div className="FaqPage">
-                <PageHeader header='FAQ'/>
+                <PageHeader header="FAQ"/>
                 <div className="TabsWrapper">
                     {this.renderTabs()}
                 </div>

@@ -1,0 +1,27 @@
+.PostStubWrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.PostAuthorStub,
+.PostTitleStub,
+.PostBodyStub {
+    border-radius: 8px;
+    background: #F2F2F2;
+    height: 10px;
+}
+
+.PostAuthorStub {
+    width: 35%;
+}
+
+.PostTitleStub {
+    height: 16px;
+    width: 75%;
+}
+
+.PostBodyStub {
+    width:100%;
+}

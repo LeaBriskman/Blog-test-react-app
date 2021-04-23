@@ -1,0 +1,31 @@
+.AlbumPhotoStub,
+.AlbumAuthorStub,
+.AlbumTitleStub {
+    background-color: #F2F2F2;
+    color: #F2F2F2;
+}
+
+.AlbumPhotoStub {
+    width: 64px;
+    height: 64px;
+    border-radius: 200px;
+    margin-right: 20px;
+}
+
+.AlbumStubWrapper {
+    display: flex;
+    flex: 1 1 150px;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.AlbumAuthorStub {
+    height: 10px; 
+    width: 50%;     
+}
+
+.AlbumTitleStub {
+    height: 16px;
+    width: 100%;
+}

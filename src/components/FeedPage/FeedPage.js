@@ -10,11 +10,16 @@ import PostItem from './Posts/PostItem/PostItem';
 import ModalWrapper from './Albums/Modals/ModalWrapper/ModalWrapper';
 import DeleteModal from './Albums/Modals/DeleteModal/DeleteModal';
 import AddModal from './Albums/Modals/AddModal/AddModal';
+import PhotoModal from './Albums/Modals/PhotoModal/PhotoModal';
+import PostStub from './Posts/PostStub/PostStub';
+import AlbumStub from './Albums/AlbumStub/AlbumStub';
 
 const FeedPage = () => {
     const [activeTabId, setActive] = useState('albums');
     const [isDeleteModalOpened, setDeleteModal] = useState(false);
     const [isAddModalOpened, setAddModal] = useState(false);
+    const [isPhotoModalOpened, setPhotoModal] = useState(false);
+    const [firstLoading, setFirstLoading] = useState(true);
 
     // useEffect(() => {
     //     fetch("https://graphqlzero.almansi.me/api", {
@@ -65,21 +70,35 @@ const FeedPage = () => {
 
     // useEffect(() => {
     //     //make loaders
-    // }, [activeTabId])
+    // }, [])
 
+    //methods for rendering albums and posts containers
     const renderAlbums = () => {
         const mappedAlbumsData = serverData['albums'];
         const mappedAlbums = [...mappedAlbumsData].map((mappedItem, id) => {
             return (
-                <AlbumWrapper>
-                    <AlbumItem title={mappedItem.title} author={mappedItem.author} onClick={() => manageDeleteAlbumModal()} />
+                <AlbumWrapper key={`AlbumWrapper${id}`}>
+                    <AlbumItem 
+                        key={id} 
+                        title={mappedItem.title} 
+                        author={mappedItem.author} 
+                        onClickDelete={manageDeleteAlbumModal}
+                        onClickOpenModal={managePhotoModal} 
+                    />
                 </AlbumWrapper>
             )
         });
+
+        const albumsLoading = (
+            <AlbumWrapper>
+                <AlbumStub />
+            </AlbumWrapper>           
+        );
+
         return (
             <>
-                <AddAlbum onClick={manageAddAlbumModal} />
-                {mappedAlbums}               
+                <AddAlbum onClick={manageAddAlbumModal} />           
+                {firstLoading ? albumsLoading : mappedAlbums}            
             </>
         )
     }
@@ -95,16 +114,22 @@ const FeedPage = () => {
         });
     };
 
+    //close and open modal windows
     const manageDeleteAlbumModal = () => {
         setDeleteModal(!isDeleteModalOpened);
     };
-
-    const deleteAlbum = i => {
-        //delete album
-    };
-
+  
     const manageAddAlbumModal = () => {
         setAddModal(!isAddModalOpened);
+    };
+      
+    const managePhotoModal = () => {
+        setPhotoModal(!isPhotoModalOpened);
+    }
+
+    //manipulations with albums
+    const deleteAlbum = i => {
+        //delete album
     };
 
     const addAlbum = () => {
@@ -120,10 +145,9 @@ const FeedPage = () => {
             <div className="AlbumsAndPostsWrapper">               
                 {activeTabId === 'albums' ? renderAlbums() : renderPosts()}              
             </div> 
-            <div onClick={e => {if (e.target === document.querySelector('.Modal')) manageDeleteAlbumModal()}}>
-                <ModalWrapper isOpened={isDeleteModalOpened} closeModal={manageDeleteAlbumModal} deleteAlbum={deleteAlbum()}><DeleteModal deleteAlbum={deleteAlbum}/></ModalWrapper>
-                <ModalWrapper isOpened={isAddModalOpened} closeModal={manageAddAlbumModal}><AddModal addAlbum={addAlbum}/></ModalWrapper>     
-            </div>
+                <ModalWrapper isOpened={isDeleteModalOpened} closeModal={manageDeleteAlbumModal} deleteAlbum={deleteAlbum}><DeleteModal deleteAlbum={deleteAlbum}/></ModalWrapper>
+                <ModalWrapper isOpened={isAddModalOpened} closeModal={manageAddAlbumModal}><AddModal addAlbum={addAlbum}/></ModalWrapper> 
+                <ModalWrapper isOpened={isPhotoModalOpened} closeModal={managePhotoModal}><PhotoModal /></ModalWrapper>    
         </div>
     );
 };

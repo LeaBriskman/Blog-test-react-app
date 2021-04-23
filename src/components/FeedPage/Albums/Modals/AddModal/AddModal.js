@@ -1,14 +1,19 @@
 import React from 'react';
+import './AddModal.css';
 
-const AddModal = ({ addAlbum }) => {
+const AddModal = ({ addAlbum, disabled }) => {
     return (
         <>
             <div className="AddModalTitle">Add album</div>
-            <label className="AddModalLabel">Title</label>
-            <input className="AddModalInput" />
-            <label className="AddModalLabel">Description</label>
-            <input className="AddModalInput" />
-            <button onClick={addAlbum()}>Send</button>
+            <div className="ModalInputWrapper">
+                <label className="AddModalLabel">Title</label>
+                <input className="AddModalInput" />
+            </div>
+            <div className="ModalInputWrapper">
+                <label className="AddModalLabel">Description</label>
+                <input className="AddModalInput" />
+            </div>
+            <button className="AddModalBtn" onClick={addAlbum()} disabled={disabled}>Send</button>
         </>
     );
 };

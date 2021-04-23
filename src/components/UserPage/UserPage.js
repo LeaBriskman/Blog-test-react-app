@@ -41,6 +41,7 @@ const UserPage = () => {
     }, []);
 
     const { username, name, email, address, phone, website, company } = userData;
+    //label index is equal to its value index, values from server
     const labels = ['Profile name', 'Company Name',  'Phone', 'Description', 'Email', 'Web site', 'Address'];
     const values = [`@${username}`, company, phone, name, email, website, address];
 
