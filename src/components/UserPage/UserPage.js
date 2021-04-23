@@ -56,7 +56,7 @@ const UserPage = () => {
                 {labels.map((label, i) => {
                     return (
                         <Input label={label} value={values[i]} i={i} key={i}/>
-                    )
+                    );
                 })}
             </div>
         </div>
