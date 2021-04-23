@@ -89,16 +89,10 @@ const FeedPage = () => {
             )
         });
 
-        const albumsLoading = (
-            <AlbumWrapper>
-                <AlbumStub />
-            </AlbumWrapper>           
-        );
-
         return (
             <>
                 <AddAlbum onClick={manageAddAlbumModal} />           
-                {firstLoading ? albumsLoading : mappedAlbums}            
+                {mappedAlbums}            
             </>
         )
     }
