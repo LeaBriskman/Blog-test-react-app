@@ -55,7 +55,7 @@ const questions = {
     ]
 };
 
-//object connecting question object (keys) with tabs names(values)
+//object connecting question object (keys) with tabs names (values)
 const tabs = {
     authorizationIssues: 'Authorization Issues',
     theFirstSteps: 'The first steps',
@@ -67,6 +67,7 @@ class FaqPage extends Component {
         activeTabId: 'authorizationIssues'
     };
 
+    //rendering and toggling tabs
     toggleTab(currentTabId) {
         this.setState({ activeTabId: currentTabId });
     };
@@ -79,6 +80,7 @@ class FaqPage extends Component {
         });
     };
 
+    //rendering containers with answers for each topic
     renderAnswers() {
         const activeTabId = this.state.activeTabId;
         const mappedQuestions = questions[activeTabId];

@@ -40,6 +40,11 @@ class AddModal extends Component {
         this.setState({ formValid: this.state.titleValid && this.state.descriptionValid });
     }
 
+    addAlbum(e) {
+        e.preventDefault();
+        this.props.addAlbum(this.state.title, this.state.description)
+    }
+
     render() {
         return (
             <>
@@ -63,7 +68,7 @@ class AddModal extends Component {
                             onChange={this.handleUserInput}
                         />
                     </div>
-                    <button className="AddModalBtn" onClick={() => this.props.addAlbum()} disabled={!this.state.formValid}>Send</button>
+                    <button className="AddModalBtn" onClick={(e) => this.addAlbum(e)} disabled={!this.state.formValid}>Send</button>
                 </form>
             </>
         );

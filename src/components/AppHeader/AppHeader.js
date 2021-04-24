@@ -5,7 +5,7 @@ import './AppHeader.css';
 const AppHeader = () => {
   const [userName, setUserName] = useState('');
 
-  useEffect((userName) => {
+  useEffect(() => {
     fetch("https://graphqlzero.almansi.me/api", {
       "method": "POST",
       "headers": { "content-type": "application/json" },
@@ -19,17 +19,16 @@ const AppHeader = () => {
       })
     }).then((resp) => resp.json())
       .then(resp => {
-        // setUserName(resp.data.user.name.match(/\b\w/g).join(''))
-        console.log(resp)
+        setUserName(resp.data.user.name.match(/\b\w/g).join(''));
       })
-      // return userName;
+      return userName;
   }, []);
 
   return(
     <div className="Header">
       <div className="AvatarWrapper">
         <div className="Avatar">{userName}</div>
-        {/* Dropdown opened by hover */}
+        {/* Dropdown routing menu opened by hover */}
         <div className="Dropdown">       
           <Link to="/"><div className="Link">Feed page</div></Link>                
           <Link to="/faq"><div className="Link">FAQ page</div></Link>

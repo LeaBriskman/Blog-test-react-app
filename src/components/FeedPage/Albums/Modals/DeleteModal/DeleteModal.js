@@ -8,7 +8,7 @@ const DeleteModal = ({ deleteAlbum }) => {
             <img src={trash} alt="Delete icon"/>
             <div className="DeleteModalTitle">Delete album</div>
             <div className="DeleteModalMessage">Album will be permanently deleted</div>
-            <button className="DeleteAlbumBtn" onClick={deleteAlbum()}>Delete</button>
+            <button className="DeleteAlbumBtn" onClick={() => deleteAlbum()}>Delete</button>
         </>
     );
 };

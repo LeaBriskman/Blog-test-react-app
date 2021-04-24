@@ -12,3 +12,22 @@
     color: #404040;
     border-bottom: 3px solid #4E42E4;
 }
+
+.Counter {
+    width: 24px;
+    height: 24px;
+    display: inline;
+    background-color: #F2F2F2;
+    color: #AFAFAF;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 5px;
+    margin-left: 5px;
+}
+
+.blue {
+    background-color: #4E42E4;   
+    color: #FFFFFF;
+}

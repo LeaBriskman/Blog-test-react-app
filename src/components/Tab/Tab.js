@@ -1,10 +1,16 @@
 import React from 'react';
 import './Tab.css';
 
-const Tab = ({ title, active, onClick }) => {
-    let classNames = 'Tab' + (active ? ' active' : '');
+const Tab = ({ title, active, onClick, counter }) => {
+    let tabClassName = `Tab ${active ? ' active' : ''}`;
+    let counterClassName = `Counter ${active ? ' blue' : ''}`;
     return (
-        <div className={classNames} onClick={onClick}>{title}</div>
+        <div 
+            className={tabClassName} 
+            onClick={onClick}>{title} 
+            {/* only for feed page */}
+            {counter ? <div className={counterClassName}>{counter}</div> : ''}
+        </div>
     );
 };
 
