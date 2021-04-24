@@ -33,6 +33,8 @@ const FeedPage = () => {
     const [isPhotoModalOpened, setPhotoModal] = useState(false);
     //state for deleting album
     const [itemToDelete, setItemToDelete] = useState('');
+    //state for showing photos
+    const [albumToShow, setAlbumToShow] = useState('');
 
     //getting posts and albums data from server
     useEffect(() => {
@@ -68,6 +70,7 @@ const FeedPage = () => {
                     })
                 }).then((resp) => resp.json())
                     .then(resp => {
+                        console.log(resp)
                         setAlbumsData(resp.data.albums.data);
                         setFirstAlbumsLoading(false);
                     })                  
@@ -144,7 +147,7 @@ const FeedPage = () => {
                         author={mappedItem.user.name} 
                         image={mappedItem.photos.data[0].thumbnailUrl}
                         onClickDelete={() => manageDeleteAlbumModal(id)}
-                        onClickOpenModal={managePhotoModal} 
+                        onClickOpenModal={managePhotoModal}
                     />
                 </AlbumWrapper>
             )
@@ -295,9 +298,9 @@ const FeedPage = () => {
                                 return postsData, paginationPostsLoading;
                             })               
                         }
-            }
-          }
-      }
+            };
+        };
+    };
 
     window.onscroll = handleScroll;
 
@@ -311,8 +314,9 @@ const FeedPage = () => {
         setAddModal(!isAddModalOpened);
     };
       
-    const managePhotoModal = () => {
+    const managePhotoModal = i => {
         setPhotoModal(!isPhotoModalOpened);
+        console.log(albumsData[i].data.photos.data);
     }
 
     //manipulations with albums
@@ -331,7 +335,7 @@ const FeedPage = () => {
                       })
                   })
         albumsData.splice(i, 1)
-        setAlbumsData(albumsData)
+        setAlbumsData(albumsData);
         setDeleteModal(false);
     };
 
@@ -365,12 +369,17 @@ const FeedPage = () => {
             },
             title: description,
             photos: {
-                data: [{thumbnailUrl: ''}]
+                data: [
+                    {thumbnailUrl: ''}]
             }
         }
         albumsData.unshift(newAlbum)
         setAlbumsData(albumsData);
         manageAddAlbumModal(false);
+    }
+
+    const showPhotosHandler = i => {
+        console.log(i)
     }
 
     return(
@@ -384,7 +393,7 @@ const FeedPage = () => {
             </div>  
                 <ModalWrapper isOpened={isDeleteModalOpened} closeModal={() => manageDeleteAlbumModal(itemToDelete)}><DeleteModal deleteAlbum={deleteAlbumHandler}/></ModalWrapper>
                 <ModalWrapper isOpened={isAddModalOpened} closeModal={manageAddAlbumModal}><AddModal addAlbum={addAlbumHandler}/></ModalWrapper> 
-                <ModalWrapper isOpened={isPhotoModalOpened} closeModal={managePhotoModal}><PhotoModal /></ModalWrapper>    
+                <ModalWrapper isOpened={isPhotoModalOpened} closeModal={() => managePhotoModal(albumToShow)}><PhotoModal /></ModalWrapper>    
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import './PostItem.css';
 
-const PostItem = ({author, title, body}) => {
+const PostItem = ({ author, title, body }) => {
     return (
         <>
             <div className="PostAuthor">{author}</div>

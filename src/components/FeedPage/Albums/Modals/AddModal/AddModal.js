@@ -13,13 +13,17 @@ class AddModal extends Component {
         }
     }
 
+    //making input controlled
     handleUserInput = e => {
         const name = e.target.name;
         const value = e.target.value;
-        this.setState({ [name]: value }, 
-            () => { this.validateInput(name, value) });
+        this.setState(
+            { [name]: value }, 
+            () => { this.validateInput(name, value) }
+        );
     }
 
+    //validations for inputs and whole form
     validateInput(fieldName, value) {
         let titleValid = this.state.titleValid;
         let descriptionValid = this.state.descriptionValid;
