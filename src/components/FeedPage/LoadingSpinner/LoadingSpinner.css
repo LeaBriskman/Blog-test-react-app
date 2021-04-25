@@ -34,7 +34,7 @@
     animation: spin 3s linear infinite;
   }
 .SpinWrapper .Spinner:after {
-    border-top-color: #fffbfe;
+    border-top-color: #535353;
     top: 6px;
     left: 6px;
     right: 6px;

@@ -34,10 +34,10 @@ const FeedPage = () => {
     //state for deleting album
     const [itemToDelete, setItemToDelete] = useState('');
     //state for showing photos
-    const [albumToShow, setAlbumToShow] = useState('');
+    const [albumToShow, setAlbumToShow] = useState([]);
 
     //getting posts and albums data from server
-    useEffect(() => {
+    useEffect((albumsData, firstAlbumsLoading) => {
         fetch("https://graphqlzero.almansi.me/api", {
           "method": "POST",
           "headers": { "content-type": "application/json" },
@@ -70,14 +70,13 @@ const FeedPage = () => {
                     })
                 }).then((resp) => resp.json())
                     .then(resp => {
-                        console.log(resp)
                         setAlbumsData(resp.data.albums.data);
                         setFirstAlbumsLoading(false);
-                    })                  
+                    })
         return albumsData, firstAlbumsLoading;
     }, []);
 
-    useEffect(() => {
+    useEffect((postsData, firstPostsLoading) => {
         fetch("https://graphqlzero.almansi.me/api", {
           "method": "POST",
           "headers": { "content-type": "application/json" },
@@ -108,10 +107,10 @@ const FeedPage = () => {
                     .then(resp => {
                         setPostsData(resp.data.posts.data);
                         setFirstPostsLoading(false)
-                    })                   
+                    })
         return postsData, firstPostsLoading;
     }, []);
- 
+
     //rendering and toggling tabs for showing albums/posts
     const tabs = {
         albums: 'Albums',
@@ -125,12 +124,12 @@ const FeedPage = () => {
     const renderTabs = () => {
         return Object.keys(tabs).map((tabId, index) => {
             return(
-                <Tab 
-                    title={tabs[tabId]} 
-                    key={index} 
-                    onClick={() => toggleTab(tabId)} 
-                    active={activeTabId === tabId ? true : false} 
-                    counter={tabId === 'albums' ? albumsData.length : postsData.length} 
+                <Tab
+                    title={tabs[tabId]}
+                    key={index}
+                    onClick={() => toggleTab(tabId)}
+                    active={activeTabId === tabId ? true : false}
+                    counter={tabId === 'albums' ? albumsData.length : postsData.length}
                 />
             );
         });
@@ -141,13 +140,13 @@ const FeedPage = () => {
         const mappedAlbums = albumsData.map((mappedItem, id) => {
             return (
                 <AlbumWrapper key={`AlbumWrapper${id}`}>
-                    <AlbumItem 
+                    <AlbumItem
                         key={id}
-                        title={mappedItem.title} 
-                        author={mappedItem.user.name} 
+                        title={mappedItem.title}
+                        author={mappedItem.user.name}
                         image={mappedItem.photos.data[0].thumbnailUrl}
                         onClickDelete={() => manageDeleteAlbumModal(id)}
-                        onClickOpenModal={managePhotoModal}
+                        onClickOpenModal={() => managePhotoModal(id)}
                     />
                 </AlbumWrapper>
             )
@@ -159,7 +158,7 @@ const FeedPage = () => {
                 albumsPreloaderArr.push(
                     <AlbumWrapper key={`AlbumPreloaderWrapper${i}`}>
                         <AlbumStub key={`AlbumStub${i}`} />
-                    </AlbumWrapper>       
+                    </AlbumWrapper>
                 );
             };
             return albumsPreloaderArr;
@@ -167,9 +166,9 @@ const FeedPage = () => {
 
         return (
             <>
-                <AddAlbum onClick={manageAddAlbumModal} />           
+                <AddAlbum onClick={manageAddAlbumModal} />
                 {firstAlbumsLoading ? albumsPreloader() : mappedAlbums}
-                {paginationAlbumsLoading ? <LoadingSpinner /> : ''}           
+                {paginationAlbumsLoading ? <LoadingSpinner /> : ''}
             </>
         );
     };
@@ -189,16 +188,16 @@ const FeedPage = () => {
                 postsPreloaderArr.push(
                     <PostWrapper key={`PostPreloaderWrapper${i}`}>
                         <PostStub key={`PostStub${i}`} />
-                    </PostWrapper>       
+                    </PostWrapper>
                 );
             };
             return postsPreloaderArr;
         };
-        
+
         return (
             <>
                 {firstPostsLoading ? postsPreloader() : mappedPosts}
-                {paginationPostsLoading ? <LoadingSpinner /> : ''}           
+                {paginationPostsLoading ? <LoadingSpinner /> : ''}
             </>
         );
     };
@@ -210,11 +209,11 @@ const FeedPage = () => {
             document.body.offsetHeight, document.documentElement.offsetHeight,
             document.body.clientHeight, document.documentElement.clientHeight
           );
-        
+
           if (scrollHeight - window.pageYOffset < document.documentElement.clientHeight + 80) {
             if (activeTabId === 'albums') {
                 if (paginationAlbumsLoading === false && albumLoadsAmount < 1) {
-                    //show spinner and start request                    
+                    //show spinner and start request
                     setPaginationAlbumsLoading(true);
                     //check if there is need for loading additional items
                     setAlbumLoadsAmount(albumLoadsAmount + 1);
@@ -254,13 +253,13 @@ const FeedPage = () => {
                                 setAlbumsData([...albumsData, ...resp.data.albums.data]);
                                 setPaginationAlbumsLoading(false);
                                 return albumsData, paginationAlbumsLoading;
-                            })               
+                            })
                         }
             }
 
             else {
                 if (paginationPostsLoading === false && postLoadsAmount < 1) {
-                    //show spinner and start request                    
+                    //show spinner and start request
                     setPaginationPostsLoading(true);
                     //check if there is need for loading additional items
                     setPostLoadsAmount(albumLoadsAmount + 1);
@@ -296,7 +295,7 @@ const FeedPage = () => {
                                 setPostsData([...postsData, ...resp.data.posts.data]);
                                 setPaginationPostsLoading(false);
                                 return postsData, paginationPostsLoading;
-                            })               
+                            })
                         }
             };
         };
@@ -309,14 +308,16 @@ const FeedPage = () => {
         setDeleteModal(!isDeleteModalOpened);
         setItemToDelete(i);
     };
-  
+
     const manageAddAlbumModal = () => {
         setAddModal(!isAddModalOpened);
     };
-      
-    const managePhotoModal = i => {
+
+    const managePhotoModal = (id, title) => {
         setPhotoModal(!isPhotoModalOpened);
-        console.log(albumsData[i].data.photos.data);
+        if (isPhotoModalOpened === false) {
+            setAlbumToShow(albumsData[id].photos.data)
+        };
     }
 
     //manipulations with albums
@@ -356,7 +357,7 @@ const FeedPage = () => {
                             }
                         }`, variables: {
                             "input": {
-                                "title": title, 
+                                "title": title,
                                 "userId": 1
                               }
                           }
@@ -378,22 +379,18 @@ const FeedPage = () => {
         manageAddAlbumModal(false);
     }
 
-    const showPhotosHandler = i => {
-        console.log(i)
-    }
-
     return(
         <div className="FeedPage">
-            <PageHeader header='Feed'/> 
+            <PageHeader header='Feed'/>
             <div className="TabsWrapper">
-                {renderTabs()}  
-            </div> 
-            <div className="AlbumsAndPostsWrapper">               
-                {activeTabId === 'albums' ? renderAlbums() : renderPosts()}              
-            </div>  
+                {renderTabs()}
+            </div>
+            <div className="AlbumsAndPostsWrapper">
+                {activeTabId === 'albums' ? renderAlbums() : renderPosts()}
+            </div>
                 <ModalWrapper isOpened={isDeleteModalOpened} closeModal={() => manageDeleteAlbumModal(itemToDelete)}><DeleteModal deleteAlbum={deleteAlbumHandler}/></ModalWrapper>
-                <ModalWrapper isOpened={isAddModalOpened} closeModal={manageAddAlbumModal}><AddModal addAlbum={addAlbumHandler}/></ModalWrapper> 
-                <ModalWrapper isOpened={isPhotoModalOpened} closeModal={() => managePhotoModal(albumToShow)}><PhotoModal /></ModalWrapper>    
+                <ModalWrapper isOpened={isAddModalOpened} closeModal={manageAddAlbumModal}><AddModal addAlbum={addAlbumHandler}/></ModalWrapper>
+                <ModalWrapper isOpened={isPhotoModalOpened} closeModal={() => managePhotoModal(albumToShow)} photoSlider><PhotoModal photos={albumToShow} /></ModalWrapper>
         </div>
     );
 };

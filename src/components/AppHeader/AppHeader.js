@@ -5,7 +5,7 @@ import './AppHeader.css';
 const AppHeader = () => {
   const [userName, setUserName] = useState('');
 
-  useEffect(() => {
+  useEffect((userName) => {
     fetch("https://graphqlzero.almansi.me/api", {
       "method": "POST",
       "headers": { "content-type": "application/json" },
