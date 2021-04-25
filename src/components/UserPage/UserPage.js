@@ -37,7 +37,7 @@ const UserPage = () => {
             setUserData(processedData);
             setPhoto(resp.data.photo.url);
         })
-        return userData, photo
+        return userData, photo;
     }, []);
 
     const { username, name, email, address, phone, website, company } = userData;

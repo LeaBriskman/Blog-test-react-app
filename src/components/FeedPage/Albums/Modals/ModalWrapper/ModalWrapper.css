@@ -21,10 +21,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 60px 80px;
-    background: #FFFFFF;
     border-radius: 4px; 
-    min-width: 520px; 
     z-index: 99;
 }
 
