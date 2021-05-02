@@ -388,7 +388,7 @@ const FeedPage = () => {
             <div className="AlbumsAndPostsWrapper">
                 {activeTabId === 'albums' ? renderAlbums() : renderPosts()}
             </div>
-                <ModalWrapper isOpened={isDeleteModalOpened} closeModal={() => manageDeleteAlbumModal(itemToDelete)}><DeleteModal deleteAlbum={deleteAlbumHandler}/></ModalWrapper>
+                <ModalWrapper isOpened={isDeleteModalOpened} closeModal={() => manageDeleteAlbumModal(itemToDelete)}><DeleteModal deleteAlbum={deleteAlbumHandler} itemToDelete={itemToDelete} /></ModalWrapper>
                 <ModalWrapper isOpened={isAddModalOpened} closeModal={manageAddAlbumModal}><AddModal addAlbum={addAlbumHandler}/></ModalWrapper>
                 <ModalWrapper isOpened={isPhotoModalOpened} closeModal={() => managePhotoModal(albumToShow)} photoSlider><PhotoModal photos={albumToShow} /></ModalWrapper>
         </div>
